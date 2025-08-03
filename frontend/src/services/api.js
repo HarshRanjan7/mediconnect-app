@@ -1,14 +1,19 @@
+// File Path: frontend/src/services/api.js
+
 import axios from 'axios';
 
-// Create an instance of axios
+// This line checks if the app is running live on Vercel or locally.
+// It uses the environment variable you just set in Vercel.
+const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend URL
+  baseURL: baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add a request interceptor to include the token in headers
+// ... (keep the rest of the file the same)
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
